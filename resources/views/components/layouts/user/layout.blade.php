@@ -93,7 +93,7 @@
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open"
                             class="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100">
-                            <img class="h-8 w-8 rounded-full" src="/images/chatbot.jpeg" alt="Profile">
+                            <img class="h-8 w-8 rounded-full" src="{{ asset('storage/' .auth()->user()->avatar) }}" alt="Profile">
                             <span
                                 class="hidden sm:block text-sm font-medium text-gray-700">{{auth()->user()->name}}</span>
                             <i class="fas fa-chevron-down text-xs text-gray-400"></i>
@@ -187,7 +187,7 @@
 
             <div class="hidden lg:block border-t border-gray-200 p-4">
                 <a href="javascript:void(0)" class="flex items-center space-x-2 p-2 rounded-md gap-2">
-                    <img class="h-8 w-8 rounded-full" src="{{ asset('images/chatbot.jpeg') }}" alt="Profile">
+                    <img class="h-8 w-8 rounded-full" src="{{ asset('storage/' .auth()->user()->avatar) }}" alt="Profile">
                     <span class="hidden sm:block text-sm font-medium text-gray-700 ">{{ auth()->user()->name }}</span>
                 </a>
             </div>
