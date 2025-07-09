@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" x-data="{ sidebarOpen: false, sidebarCollapsed: false, toggleSidebar() { this.sidebarCollapsed = !this.sidebarCollapsed } }">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Doctor Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Tailwind (via Vite or CDN) -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous" defer></script>
-</head>
 
 <body class="bg-gray-100 min-h-screen">
 
@@ -121,7 +107,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('doctor.schedule') }}"
                            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
                             <i class="fas fa-calendar-alt mr-3 text-blue-500"></i>Manage Schedule
                         </a>
@@ -151,7 +137,4 @@
         </main>
     </div>
 
-    @livewireScripts
-    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
-</html>

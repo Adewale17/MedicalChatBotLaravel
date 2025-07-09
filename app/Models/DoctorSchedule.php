@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DoctorSchedule extends Model
 {
-    protected $guarded = ['id'];
-
+    protected $fillable = ['doctor_id', 'day', 'start_time', 'end_time'];
 
     public function doctor(): BelongsTo
     {

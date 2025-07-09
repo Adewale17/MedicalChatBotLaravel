@@ -7,6 +7,8 @@ use App\Livewire\User\Auth\SignUp;
 
 use App\Livewire\Doctor\Auth\Login as DoctorLogin;
 use App\Livewire\Doctor\Dashboard\Index as DoctorDashboard;
+use App\Livewire\Doctor\Dashboard\ScheduleManager as DoctorScheduleManager;
+
 
 use App\Livewire\User\Dashboard\ChatBot;
 use App\Livewire\User\Dashboard\Index;
@@ -44,5 +46,9 @@ Route::prefix('doctor')->name('doctor.')->group(function () {
     Route::middleware('auth:doctor')->group(function () {
         Route::get('dashboard', DoctorDashboard::class)
             ->name('dashboard');
+        Route::get('schedule', DoctorScheduleManager::class)
+            ->name('schedule');
     });
+
+
 });
