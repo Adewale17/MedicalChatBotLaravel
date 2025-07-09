@@ -17,7 +17,7 @@
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                     <div class="ml-2 lg:ml-0">
-                        <h1 class="text-xl sm:text-2xl font-bold text-blue-600">CLINIC CHATBOT</h1>
+                        <h1 class="text-xl sm:text-2xl font-bold text-blue-600">CHATBOT</h1>
                     </div>
                 </div>
 
@@ -163,7 +163,7 @@
                         <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Create New</h3>
                         <div class="space-y-2">
 
-                            <a href="/chatbot" wire:navigate
+                            <a wire:navigate href="/chatbot"
                                 class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
                                 <i class="fas fa-robot mr-3 text-blue-500"></i> Chatbot
                             </a>

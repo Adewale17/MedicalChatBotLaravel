@@ -44,7 +44,7 @@
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                     <div class="ml-2 lg:ml-0">
-                        <h1 class="text-xl sm:text-2xl font-bold text-blue-600">CLINIC CHATBOT</h1>
+                        <h1 class="text-xl sm:text-2xl font-bold text-blue-600">CHATBOT</h1>
                     </div>
                 </div>
 
@@ -214,7 +214,7 @@
 
             <div class="hidden lg:block border-t border-gray-200 p-4">
                 <a href="javascript:void(0)" class="flex items-center space-x-2 p-2 rounded-md gap-2">
-                    <img class="h-8 w-8 rounded-full" src="{{ asset('images/chatbot.jpeg') }}" alt="Profile">
+                    <img class="h-8 w-8 rounded-full" src="{{ asset('storage/' .auth()->user()->avatar) }}" alt="Profile">
                     <span class="hidden sm:block text-sm font-medium text-gray-700 ">{{ auth()->user()->name }}</span>
                 </a>
             </div>
@@ -225,7 +225,7 @@
                 <div class="chat bg-gray-50 min-h-screen py-10 px-4">
                     <!-- Header -->
                     <div class="top flex items-center gap-4 mb-6">
-                        <img src="https://assets.edlin.app/images/rossedlin/03/rossedlin-03-100.jpg"
+                        <img src="{{ asset('images/chatbot.jpeg') }}"
                             class="h-12 w-12 rounded-full" alt="Avatar">
                         <div>
                             <p class="font-semibold text-blue-800">MedicalBot</p>
@@ -302,7 +302,7 @@
         chatArea.innerHTML += `
             <div class="right message flex justify-end gap-2">
                 <p class="bg-blue-600 text-white px-4 py-2 rounded-lg max-w-xs">${userText}</p>
-                <img src="https://assets.edlin.app/images/rossedlin/03/rossedlin-03-100.jpg" class="h-8 w-8 rounded-full" alt="User">
+                <img src="{{ asset('storage/' .auth()->user()->avatar) }}" class="h-8 w-8 rounded-full" alt="User">
             </div>
         `;
 
@@ -338,7 +338,7 @@
             // Display actual bot reply
             chatArea.innerHTML += `
                 <div class="left message flex items-start gap-2">
-                    <img src="https://assets.edlin.app/images/rossedlin/03/rossedlin-03-100.jpg" class="h-8 w-8 rounded-full" alt="Bot">
+                    <img src="{{ asset('images/chatbot.jpeg') }}" class="h-8 w-8 rounded-full" alt="Bot">
                     <p class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs">${reply}</p>
                 </div>
             `;
@@ -346,7 +346,7 @@
             typingMsg.remove();
             chatArea.innerHTML += `
                 <div class="left message flex items-start gap-2">
-                    <img src="https://assets.edlin.app/images/rossedlin/03/rossedlin-03-100.jpg" class="h-8 w-8 rounded-full" alt="Bot">
+                    <img src="{{ asset('images/chatbot.jpeg') }}" class="h-8 w-8 rounded-full" alt="Bot">
                     <p class="bg-red-100 text-red-800 px-4 py-2 rounded-lg max-w-xs">⚠️ Failed to get response</p>
                 </div>
             `;
