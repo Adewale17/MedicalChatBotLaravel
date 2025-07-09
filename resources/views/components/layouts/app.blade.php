@@ -23,13 +23,15 @@
 
     @livewireStyles
 </head>
-   @auth
-        @if (Auth::user())
-            @include('components.layouts.user.layout')
-        @else
-            @include('components.layouts.guest.layout')
-        @endif
-    @endauth
+  @auth
+    @if (Auth::guard('web')->check())
+        @include('components.layouts.user.layout')
+    @elseif (Auth::guard('doctor')->check())
+        @include('components.layouts.doctor.layout')
+    @else
+        @include('components.layouts.guest.layout')
+    @endif
+@endauth
 
     @guest
         @include('components.layouts.guest.layout')

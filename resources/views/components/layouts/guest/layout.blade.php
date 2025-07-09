@@ -1,37 +1,77 @@
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header/Navbar -->
-     <header class="bg-white shadow fixed top-0 left-0 w-full z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex items-center space-x-2">
-                <img src="{{ asset('images/logow.jpeg') }}" alt="Logo" class="h-10 w-10">
-                <span class="text-xl font-bold text-blue-700">MedicalBot</span>
-            </div>
-
-            <!-- Navigation Links -->
-            <nav class="space-x-6 hidden md:flex font-medium text-blue-700">
-                <a href="/" class="hover:text-blue-900 transition">Home</a>
-                <a href="#chat" class="hover:text-blue-900 transition">How it works</a>
-                <a href="#about" class="hover:text-blue-900 transition">About</a>
-            </nav>
-
-            <!-- Auth Buttons -->
-            <div class="flex items-center space-x-4">
-                <a href="{{ route('login') }}" class="text-blue-700 hover:text-blue-900 transition font-medium">
-                    <span class="hover:underline">Sign In</span>
-                </a>
-                <a href="/register" wire:navigate
-                    class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">
-                    Get Started
-                </a>
-            </div>
+   <header class="bg-white shadow fixed top-0 left-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+            <img src="{{ asset('images/logow.jpeg') }}" alt="Logo" class="h-10 w-10">
+            <span class="text-xl font-bold text-blue-700">MedicalBot</span>
         </div>
-    </header>
+
+        <!-- Hamburger Button (Mobile) -->
+        <button @click="open = !open" class="md:hidden text-blue-700 focus:outline-none" x-data="{ open: false }">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+
+            <!-- Mobile Nav Links -->
+            <div x-show="open"
+                class="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col space-y-4 py-4 px-6 z-40 md:hidden">
+                <a href="/" class="text-blue-700 hover:text-blue-900 font-medium">Home</a>
+                <a href="#chat" class="text-blue-700 hover:text-blue-900 font-medium">How it works</a>
+                <a href="#about" class="text-blue-700 hover:text-blue-900 font-medium">About</a>
+                <a href="{{ route('login') }}"
+                    class="text-blue-700 hover:text-blue-900 transition font-medium">Sign In</a>
+                <a href="/register"
+                    class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition text-center">Get
+                    Started</a>
+                <a href="{{ route('doctor.login') }}"
+                    class="flex items-center justify-center border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white px-3 py-2 rounded transition font-semibold shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 11c0 2.21-1.79 4-4 4H5a1 1 0 00-1 1v2h14v-2a1 1 0 00-1-1h-3c-2.21 0-4-1.79-4-4m0-4a4 4 0 118 0 4 4 0 01-8 0z" />
+                    </svg>
+                    Doctor Login
+                </a>
+            </div>
+        </button>
+
+        <!-- Desktop Nav -->
+        <nav class="space-x-6 hidden md:flex font-medium text-blue-700">
+            <a href="/" class="hover:text-blue-900 transition">Home</a>
+            <a href="#chat" class="hover:text-blue-900 transition">How it works</a>
+            <a href="#about" class="hover:text-blue-900 transition">About</a>
+        </nav>
+
+        <!-- Auth Buttons (Desktop) -->
+        <div class="hidden md:flex items-center space-x-4">
+            <a href="{{ route('login') }}" wire:navigate class="text-blue-700 hover:text-blue-900 transition font-medium">
+                <span class="hover:underline">Sign In</span>
+            </a>
+            <a href="/register" wire:navigate
+                class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">
+                Get Started
+            </a>
+            <a href="{{ route('doctor.login') }}" wire:navigate
+                class="flex items-center border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white px-3 py-2 rounded transition font-semibold shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 11c0 2.21-1.79 4-4 4H5a1 1 0 00-1 1v2h14v-2a1 1 0 00-1-1h-3c-2.21 0-4-1.79-4-4m0-4a4 4 0 118 0 4 4 0 01-8 0z" />
+                </svg>
+                Doctor Login
+            </a>
+        </div>
+    </div>
+</header>
 
     <!-- Main Content -->
 
-        {{ $slot }}
+    {{ $slot }}
 
 
     <!-- Footer -->

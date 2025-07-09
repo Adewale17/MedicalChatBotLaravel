@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Doctor extends Model
+class Doctor extends Authenticatable
 {
+    use Notifiable;
+
     protected $guarded = ['id'];
 
     public function schedules(): HasMany
@@ -18,9 +21,4 @@ class Doctor extends Model
     {
         return $this->hasMany(Appointment::class);
     }
-
-
-
-
-
 }

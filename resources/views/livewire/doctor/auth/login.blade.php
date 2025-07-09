@@ -6,7 +6,7 @@
 
     <!-- Login Form Section -->
     <div class="bg-white py-24 px-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Login Into Your Account</h2>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Doctor Login</h2>
 
         <form wire:submit.prevent="login">
             <!-- Loading Spinner -->
@@ -43,7 +43,6 @@
                     <input type="checkbox" wire:model.lazy="remember" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
                     <span>Remember me</span>
                 </label>
-                <a href="#" class="text-indigo-600 hover:underline text-sm">Forgot Password?</a>
             </div>
 
             <!-- Submit Button -->
@@ -52,13 +51,7 @@
                 Login
             </button>
 
-            <!-- Register Link -->
-            <div class="mt-4 text-center">
-                <p class="text-gray-600 text-base">
-                    Don't have an account?
-                    <a href="/register" wire:navigate class="text-indigo-600 hover:underline">Sign Up</a>
-                </p>
-            </div>
+
         </form>
     </div>
 </div>
