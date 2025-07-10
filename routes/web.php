@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\OpenRouterChatController;
 use App\Livewire\LandingPage;
 use App\Livewire\User\Auth\SignIn;
@@ -8,6 +9,7 @@ use App\Livewire\User\Auth\SignUp;
 use App\Livewire\Doctor\Auth\Login as DoctorLogin;
 use App\Livewire\Doctor\Dashboard\Index as DoctorDashboard;
 use App\Livewire\Doctor\Dashboard\ScheduleManager as DoctorScheduleManager;
+use App\Livewire\Doctor\Dashboard\Appointment;
 
 
 use App\Livewire\User\Dashboard\BookAppointment;
@@ -48,7 +50,16 @@ Route::prefix('doctor')->name('doctor.')->group(function () {
             ->name('dashboard');
         Route::get('schedule', DoctorScheduleManager::class)
             ->name('schedule');
+        Route::get('dashboard/appointments', Appointment::class)
+            ->name('dashboard.appointments');
+        Route::post('appointments/{appointment}/approve', [AppointmentController::class, 'approve'])
+            ->name('appointments.approve');
+
+
+        Route::post('appointments/{appointment}/cancel', [AppointmentController::class, 'cancel'])
+            ->name('appointments.cancel');
     });
+
 
 
 });
@@ -57,4 +68,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('user.')->group(function 
     Route::get('/', Index::class)->name('dashboard');
 
     Route::get('/appointments', BookAppointment::class)->name('dashboard.appointments');
+
+
 });
+
