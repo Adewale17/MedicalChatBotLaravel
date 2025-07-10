@@ -1,27 +1,21 @@
-<body
-    x-data="{ sidebarOpen: false, sidebarCollapsed: false, toggleSidebar() { this.sidebarCollapsed = !this.sidebarCollapsed } }">
+<body class="bg-gray-100 min-h-screen">
 
-
+    <!-- HEADER -->
     <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-20 h-16">
         <div class="px-4 sm:px-6 lg:px-8 h-full">
             <div class="flex justify-between items-center h-full">
                 <div class="flex items-center">
-                    <!-- Desktop Sidebar Toggle -->
-                    <button @click="toggleSidebar()"
-                        class="hidden lg:block p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 mr-3">
+                    <button id="collapseToggle" class="hidden lg:block p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 mr-3">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
-                    <!-- Mobile Menu Button -->
-                    <button @click="sidebarOpen = !sidebarOpen"
-                        class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <button id="mobileToggle" class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                     <div class="ml-2 lg:ml-0">
-                        <h1 class="text-xl sm:text-2xl font-bold text-blue-600">CHATBOT</h1>
+                        <h1 class="text-xl sm:text-2xl font-bold text-blue-600">MEDICALBOT</h1>
                     </div>
                 </div>
-
-                <!-- Header Actions -->
+                 <!-- Header Actions -->
                 <div class="flex items-center space-x-2 sm:space-x-4">
                     <!-- Notifications -->
                     <div id="notifications-target" class="relative" x-data="{ open: false }">
@@ -125,107 +119,109 @@
     </header>
 
     <div class="flex relative">
+        <div id="sidebarOverlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-30 hidden lg:hidden"></div>
 
-        {{-- <div x-show="sidebarOpen" @click="sidebarOpen = false"
-            class="fixed inset-0 bg-gray-300 bg-opacity-75 z-30 lg:hidden"></div> --}}
-
-        <nav :class="{
-            'translate-x-0': sidebarOpen,
-            '-translate-x-full': !sidebarOpen,
-            'lg:translate-x-0': !sidebarCollapsed,
-            'lg:-translate-x-full': sidebarCollapsed
-        }" class="fixed inset-y-0 left-0 z-20 w-64 bg-white shadow-sm transform transition-all duration-300 ease-in-out flex flex-col"
-            style="top: 4rem;">
-            <!-- Mobile Sidebar Header -->
+        <nav id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-white shadow-sm transform transition-all duration-300 ease-in-out -translate-x-full lg:translate-x-0" style="top: 4rem;">
             <div class="flex items-center justify-between p-4 border-b border-gray-200 lg:hidden">
                 <h2 class="text-lg font-semibold text-gray-900">Menu</h2>
-                <button @click="sidebarOpen = false"
-                    class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
+                <button id="closeMobileSidebar" class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
-            <!-- Sidebar Content -->
             <div class="flex-1 overflow-y-auto p-4 lg:p-6">
                 <div class="space-y-6">
-                    <!-- Dashboard -->
                     <div>
                         <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Dashboard</h3>
-                        <div class="space-y-2">
-                            <a href="{{ route('dashboard') }}"
-                                class="w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md  hover:bg-blue-50 hover:text-blue-700 group transition-colors {{ Route::is('dashboard') ? 'bg-blue-100' : '' }}">
-                                <i class="fas fa-home mr-3 text-blue-500 w-4 flex-shrink-0"></i>
-                                <span class="truncate">Dashboard</span>
-                            </a>
-                        </div>
+                        <a href="/dashboard" class="w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-700 group transition-colors">
+                            <i class="fas fa-home mr-3 text-blue-500"></i><span class="sidebar-label">Dashboard</span>
+                        </a>
                     </div>
                     <div>
                         <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Create New</h3>
-                        <div class="space-y-2">
-
-                            <a wire:navigate href="/chatbot"
-                                class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
-                                <i class="fas fa-robot mr-3 text-blue-500"></i> Chatbot
-                            </a>
-                            <!-- Appointments -->
-                            <a href="/appointments"
-                                class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
-                                <i class="fas fa-calendar-check mr-3 text-blue-500"></i> Book Appointment
-                            </a>
-                            <!-- Medical Records -->
-                            <a href="/records"
-                                class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
-                                <i class="fas fa-file-medical mr-3 text-blue-500"></i> Records
-                            </a>
-                        </div>
+                        <a href="/chatbot" class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
+                            <i class="fas fa-robot mr-3 text-blue-500"></i><span class="sidebar-label">Chatbot</span>
+                        </a>
+                        <a href="{{ route('user.dashboard.appointments') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
+                            <i class="fas fa-calendar-check mr-3 text-blue-500"></i><span class="sidebar-label">Book Appointment</span>
+                        </a>
+                        <a href="/records" class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
+                            <i class="fas fa-file-medical mr-3 text-blue-500"></i><span class="sidebar-label">Records</span>
+                        </a>
                     </div>
-
-
-
                 </div>
             </div>
 
             <div class="hidden lg:block border-t border-gray-200 p-4">
-                <a href="javascript:void(0)" class="flex items-center space-x-2 p-2 rounded-md gap-2">
+                <div class="flex items-center space-x-2">
                     <img class="h-8 w-8 rounded-full" src="{{ asset('storage/' .auth()->user()->avatar) }}" alt="Profile">
-                    <span class="hidden sm:block text-sm font-medium text-gray-700 ">{{ auth()->user()->name }}</span>
-                </a>
+                    <span class="sidebar-label text-sm font-medium text-gray-700">{{ auth()->user()->name }}</span>
+                </div>
             </div>
         </nav>
 
-        <main :class="sidebarCollapsed ? 'lg:ml-0' : 'lg:ml-64'" class="flex-1 min-w-0 flex flex-col overflow-hidden">
-            <div class="p-4 sm:p-6">
+        <main id="mainContent" class="flex-1 min-w-0 flex flex-col overflow-hidden pt-4 lg:pt-6 transition-all duration-300 ease-in-out lg:ml-64">
+            <div class="px-4 sm:px-6 lg:px-8">
                 {{ $slot }}
             </div>
         </main>
     </div>
 
-    {{-- Fab menu --}}
     <div class="fixed bottom-6 right-6 lg:hidden z-30">
-        <div class="relative" x-data="{ open: false }">
-            <button @click="open = !open"
-                class="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-colors">
-                <i class="fas fa-plus text-lg" :class="{ 'rotate-45': open }" style="transition: transform 0.2s;"></i>
+        <div class="relative">
+            <button id="fabToggle" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-colors">
+                <i class="fas fa-plus text-lg"></i>
             </button>
-
-
-            <div x-show="open" x-transition class="absolute bottom-16 right-0 space-y-2">
-
-                <a href="/chatbot" open=false"
-                    class="flex items-center bg-white rounded-full shadow-lg p-3 hover:shadow-xl transition-shadow">
+            <div id="fabMenu" class="hidden absolute bottom-16 right-0 space-y-2">
+                <a href="/chatbot" class="flex items-center bg-white rounded-full shadow-lg p-3 hover:shadow-xl transition-shadow">
                     <i class="fas fa-robot mr-3 text-blue-500"></i> Chatbot
                 </a>
-                <a href="#" open=false"
-                    class="flex items-center bg-white rounded-full shadow-lg p-3 hover:shadow-xl transition-shadow">
+                <a href="{{ route('user.dashboard.appointments') }}" class="flex items-center bg-white rounded-full shadow-lg p-3 hover:shadow-xl transition-shadow">
                     <i class="fas fa-calendar-check mr-3 text-blue-500"></i> Book Appointment
                 </a>
-                <a href="#" open=false"
-                    class="flex items-center bg-white rounded-full shadow-lg p-3 hover:shadow-xl transition-shadow">
+                <a href="/records" class="flex items-center bg-white rounded-full shadow-lg p-3 hover:shadow-xl transition-shadow">
                     <i class="fas fa-file-medical mr-3 text-blue-500"></i> Records
                 </a>
-
-
             </div>
         </div>
     </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const collapseToggle = document.getElementById('collapseToggle');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const closeMobileSidebar = document.getElementById('closeMobileSidebar');
+        const mainContent = document.getElementById('mainContent');
+        let isCollapsed = false;
+
+        collapseToggle?.addEventListener('click', () => {
+            isCollapsed = !isCollapsed;
+            sidebar.classList.toggle('w-64');
+            sidebar.classList.toggle('w-16');
+            mainContent.classList.toggle('lg:ml-64');
+            mainContent.classList.toggle('lg:ml-16');
+            document.querySelectorAll('.sidebar-label').forEach(el => el.classList.toggle('hidden'));
+        });
+
+        mobileToggle?.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+        });
+
+        closeMobileSidebar?.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        sidebarOverlay?.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        document.getElementById('fabToggle').addEventListener('click', () => {
+            const menu = document.getElementById('fabMenu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>

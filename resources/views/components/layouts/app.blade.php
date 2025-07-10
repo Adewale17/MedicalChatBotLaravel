@@ -23,6 +23,7 @@
 
     @livewireStyles
 </head>
+
   @auth
     @if (Auth::guard('web')->check())
         @include('components.layouts.user.layout')

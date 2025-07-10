@@ -1,4 +1,3 @@
-
 <body class="bg-gray-100 min-h-screen">
 
     <!-- HEADER -->
@@ -6,20 +5,20 @@
         <div class="px-4 sm:px-6 lg:px-8 h-full">
             <div class="flex justify-between items-center h-full">
 
-                <!-- Left: Sidebar Toggler + Logo -->
+                <!-- Sidebar Toggler + Logo -->
                 <div class="flex items-center">
-                    <!-- Desktop Toggle -->
-                    <button @click="toggleSidebar()" class="hidden lg:block p-2 text-gray-400 hover:text-gray-500">
+                    <!-- Sidebar Collapse Toggle (Desktop) -->
+                    <button id="collapseToggle" class="hidden lg:block p-2 text-gray-400 hover:text-gray-500">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
-                    <!-- Mobile Toggle -->
-                    <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden p-2 text-gray-400 hover:text-gray-500">
+                    <!-- Sidebar Open Toggle (Mobile) -->
+                    <button id="mobileToggle" class="lg:hidden p-2 text-gray-400 hover:text-gray-500">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                     <h1 class="ml-3 text-xl sm:text-2xl font-bold text-blue-600">MedicalBot</h1>
                 </div>
 
-                <!-- Right: Actions -->
+                 <!-- Right: Actions -->
                 <div class="flex items-center space-x-4 sm:space-x-6">
 
                     <!-- Notifications -->
@@ -90,51 +89,91 @@
     <!-- LAYOUT -->
     <div class="flex relative">
 
-        <!-- Sidebar Overlay (mobile) -->
-        <div x-show="sidebarOpen" @click="sidebarOpen = false"
-             class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 lg:hidden"></div>
+        <!-- Sidebar Overlay (Mobile) -->
+        <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden"></div>
 
         <!-- Sidebar -->
-        <nav :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full' + (sidebarCollapsed ? ' lg:-translate-x-full' : ' lg:translate-x-0')"
-             class="fixed inset-y-0 left-0 z-30 w-64 bg-white shadow transform transition-transform duration-300 ease-in-out"
-             style="top:4rem;">
-            <div class="p-6">
+        <nav id="sidebar" class="fixed inset-y-0 left-0 z-30 bg-white shadow transform transition-all duration-300 ease-in-out w-64 lg:translate-x-0 -translate-x-full" style="top:4rem;">
+            <div class="p-4">
                 <ul class="space-y-4">
                     <li>
-                        <a href="{{ route('doctor.dashboard') }}"
-                           class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
-                            <i class="fas fa-home mr-3 text-blue-500"></i>Dashboard
+                        <a href="{{ route('doctor.dashboard') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
+                            <i class="fas fa-home mr-3 text-blue-500"></i>
+                            <span class="sidebar-label">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('doctor.schedule') }}"
-                           class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
-                            <i class="fas fa-calendar-alt mr-3 text-blue-500"></i>Manage Schedule
+                        <a href="{{ route('doctor.schedule') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
+                            <i class="fas fa-calendar-alt mr-3 text-blue-500"></i>
+                            <span class="sidebar-label">Manage Schedule</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                           class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
-                            <i class="fas fa-notes-medical mr-3 text-blue-500"></i>View Appointments
+                        <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
+                            <i class="fas fa-notes-medical mr-3 text-blue-500"></i>
+                            <span class="sidebar-label">View Appointments</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                           class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
-                            <i class="fas fa-user mr-3 text-blue-500"></i>Create New Doctor
+                        <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
+                            <i class="fas fa-user mr-3 text-blue-500"></i>
+                            <span class="sidebar-label">Create New Doctor</span>
                         </a>
                     </li>
-                    <!-- add more links as needed -->
+                   
+                    
+                    <!-- Add more links -->
                 </ul>
             </div>
         </nav>
 
         <!-- Main Content -->
-        <main :class="sidebarCollapsed ? 'lg:ml-0' : 'lg:ml-64'" class="flex-1 min-w-0 flex flex-col overflow-hidden pt-4 lg:pt-6">
+        <main id="mainContent" class="flex-1 min-w-0 flex flex-col overflow-hidden pt-4 lg:pt-6 transition-all duration-300 ease-in-out lg:ml-64">
             <div class="px-4 sm:px-6 lg:px-8">
                 {{ $slot }}
             </div>
         </main>
     </div>
 
+    <!-- JS for sidebar toggle and collapse -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const collapseToggle = document.getElementById('collapseToggle');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mainContent = document.getElementById('mainContent');
+
+        let collapsed = false;
+
+        // Collapse Sidebar (Desktop)
+        collapseToggle?.addEventListener('click', () => {
+            collapsed = !collapsed;
+
+            if (collapsed) {
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-16');
+                mainContent.classList.remove('lg:ml-64');
+                mainContent.classList.add('lg:ml-16');
+                document.querySelectorAll('.sidebar-label').forEach(el => el.classList.add('hidden'));
+            } else {
+                sidebar.classList.remove('w-16');
+                sidebar.classList.add('w-64');
+                mainContent.classList.remove('lg:ml-16');
+                mainContent.classList.add('lg:ml-64');
+                document.querySelectorAll('.sidebar-label').forEach(el => el.classList.remove('hidden'));
+            }
+        });
+
+        // Mobile Toggle
+        mobileToggle?.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        });
+
+        // Overlay click (mobile)
+        sidebarOverlay?.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+    </script>
 </body>

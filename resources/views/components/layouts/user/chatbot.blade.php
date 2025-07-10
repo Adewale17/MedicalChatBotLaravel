@@ -179,8 +179,8 @@
                     <div>
                         <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Dashboard</h3>
                         <div class="space-y-2">
-                            <a href="{{ route('dashboard') }}"
-                                class="w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md  hover:bg-blue-50 hover:text-blue-700 group transition-colors {{ Route::is('dashboard') ? 'bg-blue-100' : '' }}">
+                            <a href="{{ route('user.dashboard') }}"
+                                class="w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md  hover:bg-blue-50 hover:text-blue-700 group transition-colors {{ Route::is('user.dashboard') ? 'bg-blue-100' : '' }}">
                                 <i class="fas fa-home mr-3 text-blue-500 w-4 flex-shrink-0"></i>
                                 <span class="truncate">Dashboard</span>
                             </a>
@@ -195,7 +195,7 @@
                                 <i class="fas fa-robot mr-3 text-blue-500"></i> Chatbot
                             </a>
                             <!-- Appointments -->
-                            <a href="/appointments"
+                            <a href="{{ route('user.dashboard.appointments') }}" wire:navigate
                                 class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
                                 <i class="fas fa-calendar-check mr-3 text-blue-500"></i> Book Appointment
                             </a>

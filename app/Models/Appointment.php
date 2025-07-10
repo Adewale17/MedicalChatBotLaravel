@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Appointment extends Model
 {
-    protected $guarded = [$id];
+    protected $guarded = ['id']; // Fixed here
 
     public function doctor(): BelongsTo
     {

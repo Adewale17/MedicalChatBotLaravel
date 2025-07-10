@@ -10,6 +10,7 @@ use App\Livewire\Doctor\Dashboard\Index as DoctorDashboard;
 use App\Livewire\Doctor\Dashboard\ScheduleManager as DoctorScheduleManager;
 
 
+use App\Livewire\User\Dashboard\BookAppointment;
 use App\Livewire\User\Dashboard\ChatBot;
 use App\Livewire\User\Dashboard\Index;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,6 @@ Route::middleware('auth')->group(function () {
         Auth::logout();
         return redirect('/');
     })->name('logout');
-    Route::get('dashboard', Index::class)->name('dashboard');
     Route::get('/chatbot', function () {
         return view('components.layouts.user.chatbot'); // or Livewire component
     });
@@ -51,4 +51,10 @@ Route::prefix('doctor')->name('doctor.')->group(function () {
     });
 
 
+});
+
+Route::middleware(['auth'])->prefix('dashboard')->name('user.')->group(function () {
+    Route::get('/', Index::class)->name('dashboard');
+
+    Route::get('/appointments', BookAppointment::class)->name('dashboard.appointments');
 });
