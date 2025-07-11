@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Appointment;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
@@ -19,7 +20,11 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::findOrFail($id);
         $appointment->update(['status' => 'approved']);
-
+        // Create a notification for the user
+        Notification::create([
+            'user_id' => $appointment->user_id,
+            'message' => 'Your appointment has been approved.',
+        ]);
         return redirect()->back()->with('message', 'Appointment approved.');
     }
 
@@ -27,8 +32,14 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::findOrFail($id);
         $appointment->update(['status' => 'cancelled']);
+        Notification::create([
+            'user_id' => $appointment->user_id,
+            'message' => 'Your appointment has been cancelled.',
+        ]);
 
         return redirect()->back()->with('message', 'Appointment cancelled.');
     }
+
+
 
 }

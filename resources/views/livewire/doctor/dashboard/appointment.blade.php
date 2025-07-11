@@ -34,7 +34,7 @@
                                 {{ ucfirst($appointment->status) }}
                             </span>
                         </td>
-                        <td class="px-6 py-4">{{ $appointment->reason }}</td>
+                        <td class="px-6 py-4">{{ $appointment->notes }}</td>
                         <td class="px-6 py-4 space-x-2">
                             @if($appointment->status == 'pending')
                                 <form action="{{ route('doctor.appointments.approve', $appointment->id) }}" method="POST" class="inline">

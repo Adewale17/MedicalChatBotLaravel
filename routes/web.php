@@ -40,7 +40,17 @@ Route::middleware('auth')->group(function () {
         return view('components.layouts.user.chatbot'); // or Livewire component
     });
     Route::post('/chat', [OpenRouterChatController::class, 'chat'])->name('chat.send');
+    Route::post('/notifications/{id}/read', function ($id) {
+        $notification = \App\Models\Notification::where('user_id', auth()->id())->findOrFail($id);
+        $notification->update(['is_read' => 1]);
+        return back();
+    })->name('notifications.markOneAsRead');
 
+    Route::delete('/notifications/{id}', function ($id) {
+        $notification = \App\Models\Notification::where('user_id', auth()->id())->findOrFail($id);
+        $notification->delete();
+        return back();
+    })->name('notifications.delete');
 });
 
 Route::prefix('doctor')->name('doctor.')->group(function () {
