@@ -21,42 +21,6 @@
                  <!-- Right: Actions -->
                 <div class="flex items-center space-x-4 sm:space-x-6">
 
-                    <!-- Notifications -->
-                    <div class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" class="p-2 text-gray-400 hover:text-gray-500 relative">
-                            <i class="fas fa-bell text-lg"></i>
-                            <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
-                        </button>
-                        <div x-show="open" @click.away="open = false" x-transition
-                            class="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
-                            <div class="p-4">
-                                <h3 class="text-sm font-medium text-gray-900 mb-3">Notifications</h3>
-                                <div class="space-y-2 max-h-64 overflow-y-auto">
-                                    <div class="flex items-start space-x-3 p-2 hover:bg-gray-50 rounded">
-                                        <div class="h-2 w-2 bg-blue-500 rounded-full mt-2"></div>
-                                        <div>
-                                            <p class="text-sm text-gray-900">New patient booked an appointment.</p>
-                                            <p class="text-xs text-gray-500">10 minutes ago</p>
-                                        </div>
-                                    </div>
-                                    <!-- more notifications... -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Help -->
-                    <div class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" class="p-2 text-gray-400 hover:text-gray-500">
-                            <i class="fas fa-question-circle text-lg"></i>
-                        </button>
-                        <div x-show="open" @click.away="open = false" x-transition
-                            class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                <i class="fas fa-envelope mr-2"></i>Contact Support
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- Profile Dropdown -->
                     <div class="relative" x-data="{ open: false }">
@@ -120,8 +84,8 @@
                             <span class="sidebar-label">Create New Doctor</span>
                         </a>
                     </li>
-                   
-                    
+
+
                     <!-- Add more links -->
                 </ul>
             </div>
