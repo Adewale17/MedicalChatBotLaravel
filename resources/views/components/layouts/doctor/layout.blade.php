@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
+                        <a href="{{ route('doctor.create') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded">
                             <i class="fas fa-user mr-3 text-blue-500"></i>
                             <span class="sidebar-label">Create New Doctor</span>
                         </a>

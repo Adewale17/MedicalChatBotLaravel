@@ -36,6 +36,10 @@
     @error('avatar')
         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
     @enderror
+
+            @if ($avatar)
+                <img src="{{ $avatar->temporaryUrl() }}" class="mt-2 h-20 rounded" alt="Preview">
+            @endif
 </div>
 
 
