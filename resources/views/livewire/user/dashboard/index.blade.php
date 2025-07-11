@@ -3,7 +3,7 @@
 <div class="w-full px-6 lg:px-12 py-10">
     <h1 class="text-3xl font-bold text-blue-700 mb-10">Welcome, {{ Auth::user()->name }}</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-2 gap-8">
         <!-- Start Chat -->
         <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
             <h2 class="text-lg font-semibold text-blue-600 mb-2">Start Chat</h2>
@@ -22,21 +22,6 @@
                 Now</a>
         </div>
 
-        <!-- Chat History -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-            <h2 class="text-lg font-semibold text-purple-600 mb-2">Chat History</h2>
-            <p class="text-gray-600 mb-4">Review your past conversations with MedicalBot.</p>
-            <a href="/history"
-                class="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition">View
-                History</a>
-        </div>
 
-        <!-- Resources -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-            <h2 class="text-lg font-semibold text-yellow-600 mb-2">Medical Resources</h2>
-            <p class="text-gray-600 mb-4">Download health tips, prescriptions, and other files.</p>
-            <a href="/resources"
-                class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">Browse</a>
-        </div>
     </div>
 </div>

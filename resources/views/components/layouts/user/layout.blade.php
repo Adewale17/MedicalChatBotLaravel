@@ -176,11 +176,7 @@
                             <i class="fas fa-calendar-check mr-3 text-blue-500"></i><span class="sidebar-label">Book
                                 Appointment</span>
                         </a>
-                        <a href="/records"
-                            class="flex items-center px-4 py-2 text-sm text-gray-700 rounded hover:bg-blue-50">
-                            <i class="fas fa-file-medical mr-3 text-blue-500"></i><span
-                                class="sidebar-label">Records</span>
-                        </a>
+                        
                     </div>
                 </div>
             </div>
