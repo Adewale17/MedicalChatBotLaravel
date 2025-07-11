@@ -57,6 +57,8 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="p-4">
+            {{ $appointments->links() }}
     </div>
 </div>
 
