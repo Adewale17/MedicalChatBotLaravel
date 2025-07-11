@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\OpenRouterChatController;
 use App\Livewire\Doctor\Dashboard\CreateDoctor;
+use App\Livewire\Doctor\Dashboard\ManageDoctors;
 use App\Livewire\LandingPage;
 use App\Livewire\User\Auth\SignIn;
 use App\Livewire\User\Auth\SignUp;
@@ -69,6 +70,8 @@ Route::prefix('doctor')->name('doctor.')->group(function () {
             ->name('appointments.cancel');
         Route::get('/create-doctor', CreateDoctor::class)
             ->name('create');
+        Route::get('/manage-doctors', ManageDoctors::class)
+            ->name('manage-doctors');
     });
 
 
