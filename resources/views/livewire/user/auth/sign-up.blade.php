@@ -1,6 +1,6 @@
 <div class="grid lg:grid-cols-2">
     <div class="hidden lg:block">
-        <img src="/images/chatbot.jpeg" alt="Register" class="w-full h-full object-cover">
+        <img src="/images/clinic.jpg" alt="Register" class="w-full h-full object-cover">
     </div>
     <div class="bg-white py-24 px-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Create Account</h2>

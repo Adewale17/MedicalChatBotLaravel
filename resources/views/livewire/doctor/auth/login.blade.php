@@ -1,7 +1,7 @@
 <div class="grid lg:grid-cols-2 mt-12">
     <!-- Left Image Section -->
     <div class="hidden lg:block">
-        <img src="/images/chatbot.jpeg" alt="Doctor Login" class="w-full h-full object-cover">
+        <img src="/images/clinic.jpg" alt="Doctor Login" class="w-full h-full object-cover">
     </div>
 
     <!-- Login Form Section -->

@@ -55,7 +55,7 @@
 
                 <!-- Right Bot Image -->
                 <div class="flex justify-center">
-                    <img src="{{ asset('images/chatbot.jpeg') }}" alt="Medical Bot"
+                    <img src="{{ asset('images/clinic.jpg') }}" alt="Medical Bot"
                         class="w-full max-w-lg rounded-xl shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                 </div>
 

@@ -23,6 +23,7 @@
 
     @livewireStyles
 </head>
+<body>
 
   @auth
     @if (Auth::guard('web')->check())
@@ -42,7 +43,7 @@
     @livewireScripts
     <script src="//unpkg.com/alpinejs" defer></script>
 
-{{-- </body> --}}
+</body>
 <!-- Alpine.js v3 CDN -->
 
 </html>

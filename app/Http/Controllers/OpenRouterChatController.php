@@ -19,7 +19,8 @@ class OpenRouterChatController extends Controller
         $url = 'https://openrouter.ai/api/v1/chat/completions';
 
         $payload = [
-            'model' => 'deepseek/deepseek-chat:free',
+            'model' => 'z-ai/glm-4.5-air:free',
+            'max_tokens' => 500,
             'messages' => [
                 [
                     'role' => 'system',
